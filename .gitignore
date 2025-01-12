@@ -1,0 +1,5 @@
+.vim
+.nvim.lua
+.cache
+.vscode
+.clangd
