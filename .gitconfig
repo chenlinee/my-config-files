@@ -1,0 +1,35 @@
+[user]
+	name = Chen Lin
+	email = ciichen235@gmail.com
+[http]
+	# proxy = socks5://user:passwd@hostname:port
+[https]
+	# proxy = socks5://user:passwd@hostname:port
+[init]
+	defaultBranch = main
+[alias]
+	co = checkout
+	st = status
+	br = branch
+	brv = branch -vv
+	cm = commit
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lgo = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --oneline
+	dt = difftool
+[core]
+	editor = nvim -f
+	excludesfile = ~/.gitignore
+	quotepath = false
+[difftool]
+	prompt = true
+[diff]
+	tool = nvimdiff
+[difftool "nvimdiff"]
+	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[merge]
+	tool = "nvim"
+[mergetool]
+	keepBackup = false
+	prompt = true
+[mergetool "nvim"]
+	cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
