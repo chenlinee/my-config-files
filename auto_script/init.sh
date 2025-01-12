@@ -3,7 +3,7 @@ backup_dir="backup_$(date +%Y%m%d_%H%M%S)"
 skip_list=(".git" "auto_script" "README.md" $tmp_path $backup_dir)
 
 rm -rf $tmp_path && mkdir $tmp_path
-rm -rf backup_dir && mkdir -p $backup_dir
+rm -rf $backup_dir && mkdir -p $backup_dir
 current_dir=$(pwd)
 
 pushd $tmp_path
@@ -25,7 +25,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 ## 备份原来的用户目录文件
 # 遍历当前目录的一级目录和文件
-for item in "$current_dir"/* "$current_dir"/.*; do
+while IFS= read -r -d '' item; do
   item_name=$(basename "$item")
 
   if [[ " ${skip_list[@]} " =~ " ${item_name} " ]]; then
@@ -46,13 +46,13 @@ for item in "$current_dir"/* "$current_dir"/.*; do
       echo "跳过: $target_path (不存在)"
     fi
   fi
-done
+done < <(find . -maxdepth 1 -mindepth 1 -print0)
 echo "备份完成，备份目录: $backup_dir"
 
 
 ## 当前配置生效
 # 遍历当前目录的一级目录和文件
-for item in "$current_dir"/* "$current_dir"/.*; do
+while IFS= read -r -d '' item; do
   item_name=$(basename "$item")
 
   if [[ " ${skip_list[@]} " =~ " ${item_name} " ]]; then
@@ -69,7 +69,7 @@ for item in "$current_dir"/* "$current_dir"/.*; do
     cp -r $item $HOME
     echo "已复制: $item -> $target_path"
   fi
-done
+done < <(find . -maxdepth 1 -mindepth 1 -print0)
 echo "配置文件移动完成"
 
 
