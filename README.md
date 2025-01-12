@@ -3,8 +3,8 @@
 ## install
 
 ``` bash
-git clone https://github.com/chenlinee/my-rc-files.git
-cd my-rc-files
+git clone https://github.com/chenlinee/my-config-files.git
+cd my-config-files
 bash auto_script/init.sh
 
 ```
@@ -17,7 +17,6 @@ bash auto_script/init.sh
     * `:CocInstall coc-clangd`
     * `:CocInstall coc-json`
     * `:CocInstall coc-pyright`
-    * `:CocInstall coc-lua`
 
 ### todo
 

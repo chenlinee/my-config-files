@@ -39,4 +39,17 @@ vim.g.completeopt = "menu,menuone,noselect,noinsert"
 -- 显示不可见字符
 vim.o.list = true
 vim.o.listchars = "space: ,tab:>·,trail:■,extends:>,precedes:<"
+-- 配置剪切板
+-- vim.opt.clipboard = "unnamedplus"
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+  },
+}
 
